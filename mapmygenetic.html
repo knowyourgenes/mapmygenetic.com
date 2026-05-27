@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MapMyGenetic · Genetics, Answered Plainly · mapmygenetic.com</title>
+<meta name="description" content="Plain-language genetics, written for the patient and the curious, reviewed by clinicians, free for everyone.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   MAPMYGENETIC.COM · FAQ REFERENCE SITE
+   Aesthetic: Editorial / Clinical / Reference — think a well-designed
+   medical journal meets a broadsheet newspaper. Deep navy structure,
+   warm parchment ground, gold accents, serif display, clean sans body.
+   ============================================================ */
+
+:root {
+  --navy:         #0E4D4B;
+  --navy-2:       #0E4D4B;
+  --navy-3:       #0E4D4B;
+  --gold:         #C49A3C;
+  --gold-light:   #E8C97A;
+  --gold-pale:    #F5E9C8;
+  --parchment:    #FAF6EF;
+  --parchment-2:  #EDE7D7;
+  --parchment-3:  #E0D8C4;
+  --ink:          #1A1510;
+  --ink-2:        #3D3628;
+  --ink-3:        #6B6050;
+  --ink-4:        #9A8E7E;
+  --line:         rgba(11,27,46,.10);
+  --line-gold:    rgba(196,154,60,.25);
+
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+
+  --sh-card: 0 4px 24px -8px rgba(11,27,46,.10);
+  --sh-deep: 0 16px 50px -12px rgba(11,27,46,.18);
+
+  --e-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --ff: 'Figtree', system-ui, sans-serif;
+  --ff-serif: 'Instrument Serif', Georgia, serif;
+  --ff-mono: 'DM Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  margin: 0;
+  font-family: var(--ff);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--parchment);
+  overflow-x: hidden;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+h1, h2, h3, h4, p { margin: 0; }
+
+/* ===== Subtle grid texture ===== */
+body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: -1;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* ===== Container ===== */
+.wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+.wrap--narrow { max-width: 860px; }
+.wrap--mid { max-width: 1040px; }
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  transition: all .4s var(--e-out);
+}
+.nav__inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 40px;
+  transition: all .4s var(--e-out);
+}
+.nav.scrolled .nav__inner {
+  padding: 12px 40px;
+  background: rgba(247, 243, 234, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line-gold);
+}
+.nav__brand {
+  display: flex; align-items: center; gap: 14px;
+}
+.nav__mark {
+  width: 36px; height: 36px;
+  background: var(--navy);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.nav__mark::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(196,154,60,.3));
+}
+.nav__dna {
+  width: 20px; height: 20px;
+  position: relative; z-index: 1;
+}
+.nav__wordmark {
+  display: flex; flex-direction: column; gap: 1px;
+}
+.nav__site {
+  font-family: var(--ff-serif);
+  font-size: 17px;
+  color: var(--navy);
+  letter-spacing: -.01em;
+  line-height: 1;
+}
+.nav__tld {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.nav__links {
+  display: flex; align-items: center; gap: 28px;
+}
+.nav__link {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink-3);
+  letter-spacing: .01em;
+  transition: color .3s;
+}
+.nav__link:hover { color: var(--navy); }
+.nav__cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 18px;
+  background: var(--navy);
+  color: var(--parchment);
+  border-radius: 999px;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: .01em;
+  transition: all .4s var(--e-out);
+}
+.nav__cta:hover {
+  background: var(--navy-3);
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  padding: 160px 0 100px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 50%; transform: translateX(-50%);
+  width: 900px; height: 600px;
+  background: radial-gradient(ellipse at 50% 30%, rgba(196,154,60,.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero__inner {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 32px;
+  text-align: center;
+  position: relative;
+}
+.hero__badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 7px 16px;
+  border: 1px solid var(--line-gold);
+  background: rgba(245, 233, 200, .5);
+  border-radius: 999px;
+  margin-bottom: 36px;
+}
+.hero__badge-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+.hero__badge-text {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.hero__eyebrow {
+  font-family: var(--ff-mono);
+  font-size: 11.5px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+.hero__h1 {
+  font-family: var(--ff);
+  font-size: clamp(44px, 7vw, 76px);
+  line-height: 1.06;
+  letter-spacing: -.02em;
+  color: var(--navy);
+  margin-bottom: 24px;
+}
+.hero__h1_br {
+  font-family: var(--ff-serif);
+  font-size: clamp(44px, 7vw, 76px);
+  line-height: 1.06;
+  letter-spacing: -.02em;
+  color: var(--navy);
+  margin-bottom: 24px;
+}
+.hero__h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+.hero__sub {
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink-3);
+  max-width: 600px;
+  margin: 0 auto 44px;
+  font-weight: 300;
+}
+.hero__actions {
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 64px;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 13px 24px;
+  border-radius: 999px;
+  font-weight: 500; font-size: 14.5px;
+  letter-spacing: .005em;
+  transition: all .4s var(--e-out);
+  white-space: nowrap;
+}
+.btn--navy {
+  background: var(--navy);
+  color: var(--parchment);
+  box-shadow: 0 8px 24px -8px rgba(11,27,46,.35);
+}
+.btn--navy:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px -10px rgba(11,27,46,.45);
+}
+.btn--outline {
+  background: transparent;
+  color: var(--navy);
+  border: 1.5px solid var(--parchment-3);
+}
+.btn--outline:hover {
+  border-color: var(--navy);
+  background: rgba(11,27,46,.04);
+}
+
+/* ===== Search bar ===== */
+.hero__search {
+  max-width: 580px;
+  margin: 0 auto;
+  position: relative;
+}
+.hero__search-icon {
+  position: absolute; left: 20px; top: 50%; transform: translateY(-50%);
+  width: 20px; height: 20px; pointer-events: none;
+}
+.hero__search-input {
+  width: 100%;
+  padding: 16px 24px 16px 52px;
+  background: white;
+  border: 1.5px solid var(--parchment-3);
+  border-radius: 999px;
+  font-family: var(--ff);
+  font-size: 15px;
+  color: var(--ink);
+  outline: none;
+  box-shadow: var(--sh-card);
+  transition: all .3s var(--e-out);
+}
+.hero__search-input::placeholder { color: var(--ink-4); }
+.hero__search-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(196,154,60,.15), var(--sh-card);
+}
+.hero__search-pills {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 14px;
+  background: white;
+  border: 1px solid var(--parchment-3);
+  border-radius: 999px;
+  font-size: 12.5px;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: all .3s var(--e-out);
+}
+.pill:hover {
+  border-color: var(--gold);
+  color: var(--navy);
+  background: var(--gold-pale);
+}
+
+/* ============================================================
+   DIVIDER LINE
+   ============================================================ */
+.rule {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line-gold) 30%, var(--line-gold) 70%, transparent);
+  margin: 0;
+}
+
+/* ============================================================
+   STATS BAR
+   ============================================================ */
+.stats {
+  padding: 40px 0;
+  background: var(--navy);
+  position: relative;
+}
+.stats::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(196,154,60,.07) 0%, transparent 60%);
+  pointer-events: none;
+}
+.stats__grid {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0;
+  position: relative;
+}
+.stats__item {
+  flex: 1; max-width: 240px;
+  padding: 0 40px;
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,.08);
+}
+.stats__item:last-child { border-right: 0; }
+.stats__num {
+  font-family: var(--ff);
+  font-size: 38px;
+  color: var(--gold-light);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stats__label {
+  font-size: 12px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(247,243,234,.5);
+  font-family: var(--ff-mono);
+}
+
+/* ============================================================
+   CATEGORIES
+   ============================================================ */
+.categories {
+  padding: 80px 0 60px;
+}
+.section-label {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: var(--ff-serif);
+  font-size: clamp(28px, 4vw, 40px);
+  color: var(--navy);
+  letter-spacing: -.02em;
+  line-height: 1.15;
+  margin-bottom: 48px;
+}
+.section-title em { font-style: italic; }
+
+.cats__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.cat-card {
+  padding: 22px 20px 20px;
+  background: white;
+  border: 1px solid var(--parchment-3);
+  border-radius: var(--r-lg);
+  cursor: pointer;
+  transition: all .4s var(--e-out);
+  position: relative;
+  overflow: hidden;
+}
+.cat-card::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .4s var(--e-out);
+}
+.cat-card:hover {
+  border-color: var(--line-gold);
+  box-shadow: var(--sh-card);
+  transform: translateY(-3px);
+}
+.cat-card:hover::before { transform: scaleX(1); }
+.cat-card.active {
+  border-color: var(--gold);
+  background: var(--gold-pale);
+}
+.cat-card.active::before { transform: scaleX(1); }
+.cat__icon {
+  width: 36px; height: 36px;
+  background: var(--parchment-2);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 14px;
+  transition: background .3s;
+}
+.cat-card.active .cat__icon,
+.cat-card:hover .cat__icon {
+  background: rgba(196,154,60,.2);
+}
+.cat__name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 5px;
+  line-height: 1.3;
+}
+.cat__count {
+  font-size: 11.5px;
+  color: var(--ink-4);
+  font-family: var(--ff-mono);
+}
+
+/* ============================================================
+   FAQ SECTION
+   ============================================================ */
+.faq-section {
+  padding: 0 0 100px;
+}
+.faq__header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 32px;
+}
+.faq__title {
+  font-family: var(--ff-serif);
+  font-size: 26px;
+  color: var(--navy);
+  letter-spacing: -.015em;
+}
+.faq__showing {
+  font-size: 13px;
+  color: var(--ink-4);
+  font-family: var(--ff-mono);
+}
+.faq__list {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.faq__item {
+  border: 1px solid var(--parchment-3);
+  border-radius: var(--r-md);
+  background: white;
+  overflow: hidden;
+  transition: border-color .3s var(--e-out), box-shadow .3s var(--e-out);
+}
+.faq__item:hover {
+  border-color: var(--line-gold);
+}
+.faq__item.open {
+  border-color: var(--gold);
+  box-shadow: var(--sh-card);
+}
+.faq__q {
+  width: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px;
+  padding: 22px 24px;
+  text-align: left;
+  cursor: pointer;
+}
+.faq__q-left {
+  display: flex; align-items: center; gap: 16px;
+  flex: 1;
+}
+.faq__cat-badge {
+  flex-shrink: 0;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-family: var(--ff-mono);
+  font-size: 9.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  background: var(--parchment-2);
+  color: var(--ink-3);
+  white-space: nowrap;
+  display: none;
+}
+.faq__cat-badge.show { display: block; }
+.faq__q-text {
+  font-size: 15.5px;
+  font-weight: 500;
+  color: var(--navy);
+  line-height: 1.45;
+}
+.faq__chevron {
+  flex-shrink: 0;
+  width: 30px; height: 30px;
+  border-radius: 999px;
+  background: var(--parchment-2);
+  display: flex; align-items: center; justify-content: center;
+  transition: all .35s var(--e-out);
+}
+.faq__item.open .faq__chevron {
+  background: var(--gold);
+  transform: rotate(180deg);
+}
+.faq__chevron svg { width: 14px; height: 14px; }
+.faq__a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .5s var(--e-out);
+}
+.faq__item.open .faq__a { max-height: 800px; }
+.faq__a-inner {
+  padding: 0 24px 28px;
+  border-top: 1px solid var(--parchment-2);
+  padding-top: 22px;
+}
+.faq__body {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--ink-2);
+}
+.faq__body p { margin: 0 0 14px; }
+.faq__body p:last-of-type { margin-bottom: 0; }
+.faq__meta {
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--parchment-2);
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  color: var(--ink-4);
+  letter-spacing: .04em;
+}
+.faq__meta-dot {
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: var(--ink-4);
+}
+
+/* ============================================================
+   EDITORIAL STANDARDS
+   ============================================================ */
+.standards {
+  padding: 80px 0;
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+.standards::before {
+  content: "";
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  border: 1px solid rgba(196,154,60,.1);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.standards::after {
+  content: "";
+  position: absolute;
+  bottom: -300px; left: -200px;
+  width: 700px; height: 700px;
+  border: 1px solid rgba(196,154,60,.06);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.standards__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative; z-index: 1;
+}
+.standards__label {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+.standards__h2 {
+  font-family: var(--ff);
+  font-size: clamp(30px, 4vw, 44px);
+  color: white;
+  line-height: 1.12;
+  letter-spacing: -.02em;
+  margin-bottom: 22px;
+}
+.standards__h2_br {
+  font-family: var(--ff-serif);
+  font-size: clamp(30px, 4vw, 44px);
+  color: white;
+  line-height: 1.12;
+  letter-spacing: -.02em;
+  margin-bottom: 22px;
+}
+.standards__h2 em { color: var(--gold-light); font-style: italic; }
+.standards__body {
+  font-size: 15.5px;
+  line-height: 1.75;
+  color: rgba(247,243,234,.7);
+  font-weight: 300;
+}
+.standards__pillars {
+  display: flex; flex-direction: column; gap: 20px;
+}
+.pillar {
+  display: flex; gap: 18px;
+  align-items: flex-start;
+  padding: 20px 22px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(196,154,60,.15);
+  border-radius: var(--r-md);
+  transition: background .3s;
+}
+.pillar:hover { background: rgba(255,255,255,.08); }
+.pillar__num {
+  font-family: var(--ff-serif);
+  font-size: 28px;
+  color: var(--gold);
+  line-height: 1;
+  min-width: 28px;
+}
+.pillar__content {}
+.pillar__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 5px;
+}
+.pillar__text {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: rgba(247,243,234,.55);
+  font-weight: 300;
+}
+
+/* ============================================================
+   NEWSLETTER
+   ============================================================ */
+.newsletter {
+  padding: 80px 0;
+  background: var(--parchment);
+}
+.newsletter__box {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+.newsletter__icon {
+  width: 56px; height: 56px;
+  background: var(--navy);
+  border-radius: var(--r-lg);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 24px;
+}
+.newsletter__h2 {
+  font-family: var(--ff);
+  font-size: 34px;
+  color: var(--navy);
+  letter-spacing: -.02em;
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+.newsletter__h2_br {
+  font-family: var(--ff-serif);
+  font-size: 34px;
+  color: var(--navy);
+  letter-spacing: -.02em;
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+.newsletter__sub {
+  font-size: 15.5px;
+  color: var(--ink-3);
+  line-height: 1.65;
+  margin-bottom: 36px;
+  font-weight: 300;
+}
+.newsletter__form {
+  display: flex; gap: 10px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.newsletter__input {
+  flex: 1;
+  padding: 14px 20px;
+  border: 1.5px solid var(--parchment-3);
+  border-radius: 999px;
+  font-family: var(--ff);
+  font-size: 14.5px;
+  color: var(--ink);
+  background: white;
+  outline: none;
+  transition: border-color .3s;
+}
+.newsletter__input:focus { border-color: var(--gold); }
+.newsletter__input::placeholder { color: var(--ink-4); }
+.newsletter__note {
+  margin-top: 14px;
+  font-size: 12.5px;
+  color: var(--ink-4);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  padding: 48px 0;
+  background: var(--navy-2);
+  border-top: 1px solid rgba(196,154,60,.12);
+}
+.footer__inner {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer__brand {
+  font-family: var(--ff-serif);
+  font-size: 18px;
+  color: white;
+}
+.footer__brand span {
+  color: var(--gold);
+}
+.footer__links {
+  display: flex; gap: 28px;
+}
+.footer__link {
+  font-size: 13px;
+  color: rgba(255,255,255,.4);
+  transition: color .3s;
+}
+.footer__link:hover { color: rgba(255,255,255,.8); }
+.footer__copy {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  color: rgba(255,255,255,.25);
+  letter-spacing: .04em;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.anim { opacity: 0; }
+.anim.in { animation: fadeUp .7s var(--e-out) forwards; }
+.anim-d1 { animation-delay: .1s; }
+.anim-d2 { animation-delay: .2s; }
+.anim-d3 { animation-delay: .3s; }
+.anim-d4 { animation-delay: .4s; }
+.anim-d5 { animation-delay: .5s; }
+
+/* No-JS fallback */
+.no-js .anim { opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#" class="nav__brand">
+      <div class="nav__mark">
+        <svg class="nav__dna" viewBox="0 0 20 20" fill="none">
+          <path d="M5 2c0 3 5 4 5 8s-5 5-5 8" stroke="rgba(255,255,255,0.5)" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M15 2c0 3-5 4-5 8s5 5 5 8" stroke="#C49A3C" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="5.5" y1="6.5" x2="14.5" y2="6.5" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+          <line x1="5.5" y1="10" x2="14.5" y2="10" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+          <line x1="5.5" y1="13.5" x2="14.5" y2="13.5" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="nav__wordmark">
+        <span class="nav__site">MapMyGenetic</span>
+        <span class="nav__tld">.com</span>
+      </div>
+    </a>
+
+    <nav class="nav__links">
+      <a href="#categories" class="nav__link">Browse</a>
+      <a href="#faq" class="nav__link">Q&amp;A Library</a>
+      <a href="#standards" class="nav__link">Our Standards</a>
+    </nav>
+
+    <a href="#newsletter" class="nav__cta btn">
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+        <path d="M1 3.5a.5.5 0 01.5-.5h12a.5.5 0 01.5.5v8a.5.5 0 01-.5.5h-12a.5.5 0 01-.5-.5v-8zm1 1v6.5h11V4.5L7.5 9 2 4.5zm.8-.5h9.4L7.5 7.8 2.8 4z" fill="currentColor"/>
+      </svg>
+      Weekly digest
+    </a>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero">
+  <div class="hero__inner">
+    <div class="hero__badge anim">
+      <span class="hero__badge-dot"></span>
+      <span class="hero__badge-text">Peer-reviewed · Clinician-checked · Free</span>
+    </div>
+
+    <p class="hero__eyebrow anim anim-d1">An open library of answers about your DNA</p>
+
+    <h1 class="hero__h1 anim anim-d2">
+      Genetics, answered<br><em class="hero__h1_br">plainly.</em>
+    </h1>
+
+    <p class="hero__sub anim anim-d3">
+      Honest, cited, jargon-free answers to the questions people actually ask about genetic testing, inheritance, ancestry, and disease risk. Reviewed by clinicians. Updated as the science updates.
+    </p>
+
+    <div class="hero__actions anim anim-d4">
+      <a href="#faq" class="btn btn--navy">
+        Browse all questions
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+          <path d="M8.5 2.5L13 7.5M13 7.5L8.5 12.5M13 7.5H2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="#categories" class="btn btn--outline">Browse by category</a>
+    </div>
+
+    <div class="hero__search anim anim-d5">
+      <svg class="hero__search-icon" viewBox="0 0 20 20" fill="none">
+        <circle cx="8.5" cy="8.5" r="5.75" stroke="var(--ink-4)" stroke-width="1.5"/>
+        <path d="M13 13l3.5 3.5" stroke="var(--ink-4)" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <input type="text" class="hero__search-input" placeholder="Try: 'Can a DNA test predict diabetes?' · 'What does BRCA1 mean?'" />
+    </div>
+
+    <div class="hero__search-pills anim anim-d5">
+      <span class="pill" onclick="filterByTag('Is height genetic?')">Is height genetic?</span>
+      <span class="pill" onclick="filterByTag('What is a SNP?')">What is a SNP?</span>
+      <span class="pill" onclick="filterByTag('BRCA1')">BRCA1 explained</span>
+      <span class="pill" onclick="filterByTag('carrier')">Carrier screening</span>
+      <span class="pill" onclick="filterByTag('ancestry')">Ancestry results</span>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- ============================================================
+     STATS
+     ============================================================ -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stats__grid">
+      <div class="stats__item">
+        <div class="stats__num">22</div>
+        <div class="stats__label">Answered questions</div>
+      </div>
+      <div class="stats__item">
+        <div class="stats__num">8</div>
+        <div class="stats__label">Topic categories</div>
+      </div>
+      <div class="stats__item">
+        <div class="stats__num">5</div>
+        <div class="stats__label">Clinician reviewers</div>
+      </div>
+      <div class="stats__item">
+        <div class="stats__num">∞</div>
+        <div class="stats__label">Free, always</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CATEGORIES
+     ============================================================ -->
+<section class="categories" id="categories">
+  <div class="wrap wrap--mid">
+    <p class="section-label anim">Topic categories</p>
+    <h2 class="section-title anim anim-d1">Browse <em>by subject</em></h2>
+
+    <div class="cats__grid anim anim-d2">
+      <div class="cat-card active" data-cat="all" onclick="filterCategory(this, 'all')">
+        <div class="cat__icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <rect x="1.5" y="1.5" width="6" height="6" rx="1.5" stroke="var(--gold)" stroke-width="1.5"/>
+            <rect x="10.5" y="1.5" width="6" height="6" rx="1.5" stroke="var(--gold)" stroke-width="1.5"/>
+            <rect x="1.5" y="10.5" width="6" height="6" rx="1.5" stroke="var(--gold)" stroke-width="1.5"/>
+            <rect x="10.5" y="10.5" width="6" height="6" rx="1.5" stroke="var(--gold)" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="cat__name">All questions</div>
+        <div class="cat__count">22 answers</div>
+      </div>
+
+      <div class="cat-card" data-cat="basics" onclick="filterCategory(this, 'basics')">
+        <div class="cat__icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <circle cx="9" cy="9" r="7" stroke="var(--ink-3)" stroke-width="1.5"/>
+            <path d="M9 5v4l2.5 2.5" stroke="var(--ink-3)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="cat__name">Testing basics</div>
+        <div class="cat__count">2 answers</div>
+      </div>
+
+      <div class="cat-card" data-cat="dna" onclick="filterCategory(this, 'dna')">
+        <div class="cat__icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M5 2c0 3.5 4 4.5 4 7s-4 4-4 7" stroke="var(--ink-3)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M13 2c0 3.5-4 4.5-4 7s4 4 4 7" stroke="var(--ink-3)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="5.5" y1="5.5" x2="12.5" y2="5.5" stroke="var(--ink-3)" stroke-width="1" opacity=".5"/>
+            <line x1="5.5" y1="9" x2="12.5" y2="9" stroke="var(--ink-3)" stroke-width="1" opacity=".5"/>
+            <line x1="5.5" y1="12.5" x2="12.5" y2="12.5" stroke="var(--ink-3)" stroke-width="1" opacity=".5"/>
+          </svg>
+        </div>
+        <div class="cat__name">How DNA works</div>
+        <div class="cat__count">2 answers</div>
+      </div>
+
+      <div class="cat-card" data-cat="inheritance" onclick="filterCategory(this, 'inheritance')">
+        <div class="cat__icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <circle cx="9" cy="3" r="2" stroke="var(--ink-3)" stroke-width="1.5"/>
+            <circle cx="4" cy="13" r="2" stroke="var(--ink-3)" stroke-width="1.5"/>
+            <circle cx="14" cy="13" r="2" stroke="var(--ink-3)" stroke-width="1.5"/>
+            <path d="M9 5v3M7 8l-3 3M11 8l3 3" stroke="var(--ink-3)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="cat__name">Inheritance &amp; family</div>
+        <div class="cat__count">3 answers</div>
+      </div>
+
+      <div class="cat-card" data-cat="ancestry" onclick="filterCategory(this, 'ancestry')">
+        <div class="cat__icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <circle cx="9" cy="9" r="7" stroke="var(--ink-3)" stroke-width="1.5"/>
+            <path d="M2 9h14M9 2c-2 2-3 4-3 7s1 5 3 7" stroke="var(--ink-3)" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="cat__name">Ancestry</div>
+        <div class="cat__count">3 answers</div>
+      </div>
+
+      <div class="cat-card" data-cat="health" onclick="filterCategory(this, 'health')">
+        <div class="cat__icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M9 16s-7-4.5-7-8.5a4.5 4.5 0 018.5-1.5A4.5 4.5 0 0116 7.5C16 11.5 9 16 9 16z" stroke="var(--ink-3)" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="cat__name">Health &amp; disease risk</div>
+        <div class="cat__count">3 answers</div>
+      </div>
+
+      <div class="cat-card" data-cat="traits" onclick="filterCategory(this, 'traits')">
+        <div class="cat__icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M3 14l4-4 3 3 5-7" stroke="var(--ink-3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="cat__name">Traits &amp; lifestyle</div>
+        <div class="cat__count">4 answers</div>
+      </div>
+
+      <div class="cat-card" data-cat="pregnancy" onclick="filterCategory(this, 'pregnancy')">
+        <div class="cat__icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <circle cx="9" cy="7" r="3.5" stroke="var(--ink-3)" stroke-width="1.5"/>
+            <path d="M3 16c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="var(--ink-3)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="cat__name">Children &amp; pregnancy</div>
+        <div class="cat__count">2 answers</div>
+      </div>
+
+      <div class="cat-card" data-cat="ethics" onclick="filterCategory(this, 'ethics')">
+        <div class="cat__icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M9 1.5L11 6.5H16L12 9.5L14 14.5L9 11.5L4 14.5L6 9.5L2 6.5H7L9 1.5Z" stroke="var(--ink-3)" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="cat__name">Ethics, privacy &amp; law</div>
+        <div class="cat__count">3 answers</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ LIST
+     ============================================================ -->
+<section class="faq-section" id="faq">
+  <div class="wrap wrap--mid">
+
+    <div class="faq__header">
+      <h2 class="faq__title">Answered questions</h2>
+      <span class="faq__showing" id="faq-count">Showing all 22</span>
+    </div>
+
+    <div class="faq__list" id="faq-list">
+      <!-- Q1 -->
+      <div class="faq__item" data-cat="basics" data-tags="DNA test tell me basics">
+        <button class="faq__q" onclick="toggleFaq(this)">
+          <div class="faq__q-left">
+            <span class="faq__cat-badge show">Testing basics</span>
+            <span class="faq__q-text">What does a DNA test actually tell me?</span>
+          </div>
+          <span class="faq__chevron">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            <div class="faq__body">
+              <p>A DNA test reads specific regions of your genetic code and reports what it finds. The honest answer to "what does it tell me" depends entirely on which test you ordered. There are three broad categories.</p>
+              <p><strong>Clinical diagnostic tests</strong> are ordered by a doctor when they suspect a specific genetic condition. These read the genes most likely to be involved and return a yes-or-no answer with high confidence. BRCA1/BRCA2 testing for breast cancer risk is the best-known example.</p>
+              <p><strong>Direct-to-consumer health tests</strong> — the kind you order online — usually read a few hundred thousand single-letter variants in your DNA. They estimate your risk for common conditions like type 2 diabetes or hypertension, your likely response to caffeine or lactose, and traits like sleep type or muscle composition. These are useful for context, not diagnosis.</p>
+              <p><strong>Ancestry tests</strong> read a different set of variants and compare your pattern to reference populations to estimate where your DNA's signal traces back to. These are estimates, not certainties.</p>
+              <p>The key thing to remember: a DNA test reports likelihoods and patterns, not destinies.</p>
+            </div>
+            <div class="faq__meta">
+              <span>Reviewed by Dr. Vikram K., medical geneticist</span>
+              <span class="faq__meta-dot"></span>
+              <span>Testing Basics</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="faq__item" data-cat="basics" data-tags="clinical DTC direct consumer difference">
+        <button class="faq__q" onclick="toggleFaq(this)">
+          <div class="faq__q-left">
+            <span class="faq__cat-badge show">Testing basics</span>
+            <span class="faq__q-text">What's the difference between a clinical genetic test and a direct-to-consumer one?</span>
+          </div>
+          <span class="faq__chevron">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            <div class="faq__body">
+              <p>The difference matters more than most people realise. The two products look similar — you provide a saliva or blood sample and get a report — but they are built for different jobs.</p>
+              <p>A clinical genetic test, ordered through a doctor or genetic counsellor, sequences the full gene or full set of genes relevant to a specific medical question. It is validated to clinical-grade standards. A positive result is medically actionable, often immediately. These tests cost more, take longer, and the results come with a clinician's interpretation.</p>
+              <p>A direct-to-consumer test, ordered online, typically uses a SNP array — a chip that reads several hundred thousand pre-selected variants out of your roughly three billion DNA base pairs. The coverage is broad but shallow. A DTC result that flags a "moderate risk" for a condition is interesting, but most clinicians would re-test with a proper clinical panel before acting on it.</p>
+              <p>The simplest rule of thumb: if the result of a test could change a medical decision, use a clinical test. If you want general lifestyle and wellness context, a DTC test is fine.</p>
+            </div>
+            <div class="faq__meta">
+              <span>Reviewed by Dr. Riya M., clinical geneticist</span>
+              <span class="faq__meta-dot"></span>
+              <span>Testing Basics</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="faq__item" data-cat="dna" data-tags="DNA gene chromosome genome difference">
+        <button class="faq__q" onclick="toggleFaq(this)">
+          <div class="faq__q-left">
+            <span class="faq__cat-badge show">How DNA works</span>
+            <span class="faq__q-text">What's the difference between DNA, genes, chromosomes, and the genome?</span>
+          </div>
+          <span class="faq__chevron">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            <div class="faq__body">
+              <p>These four terms get used interchangeably, but they are nested inside one another.</p>
+              <p><strong>DNA</strong> is the molecule. A long chemical chain made of four building blocks (A, T, G, C) twisted into a double helix. Every cell in your body contains the same DNA.</p>
+              <p><strong>A gene</strong> is a stretch of DNA that codes for a specific function — usually instructions for making a protein. Humans have approximately 20,000 protein-coding genes, which is fewer than the number of genes in a banana. Most of your DNA does not code for proteins; it does other regulatory work, or it doesn't yet have a known function.</p>
+              <p><strong>A chromosome</strong> is the package the DNA is stored in. Humans have 23 pairs of chromosomes (46 in total) — you get one of each pair from each parent. Each chromosome carries hundreds to thousands of genes.</p>
+              <p><strong>The genome</strong> is the complete set of DNA in your cells — all 23 chromosome pairs together, all 20,000 genes, all the non-coding regions, the lot. When someone says "your genome was sequenced," they mean the full set was read end to end.</p>
+            </div>
+            <div class="faq__meta">
+              <span>Reviewed by Dr. Manas K., molecular biologist</span>
+              <span class="faq__meta-dot"></span>
+              <span>How DNA Works</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="faq__item" data-cat="dna" data-tags="SNP snip polymorphism variant">
+        <button class="faq__q" onclick="toggleFaq(this)">
+          <div class="faq__q-left">
+            <span class="faq__cat-badge show">How DNA works</span>
+            <span class="faq__q-text">What is a SNP, and why does everyone keep mentioning them?</span>
+          </div>
+          <span class="faq__chevron">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            <div class="faq__body">
+              <p>A SNP — pronounced "snip" — stands for single nucleotide polymorphism. It is a position in your DNA where one of the four letters differs from the version most other people carry.</p>
+              <p>The reason SNPs come up so often in genetics is that they are easy to read at scale and many of them have been studied for their associations with health, traits, and ancestry. A typical direct-to-consumer DNA test reads between 600,000 and a million SNPs.</p>
+              <p>Not every SNP matters. Most are silent variation. The famous ones — APOE for Alzheimer's, BRCA1/2 for breast cancer, CYP1A2 for caffeine, LCT for lactose — matter because the science has caught up to them.</p>
+            </div>
+            <div class="faq__meta">
+              <span>Reviewed by Dr. Manas K., molecular biologist</span>
+              <span class="faq__meta-dot"></span>
+              <span>How DNA Works</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="faq__item" data-cat="inheritance" data-tags="50% parents inherit nuclear mitochondrial">
+        <button class="faq__q" onclick="toggleFaq(this)">
+          <div class="faq__q-left">
+            <span class="faq__cat-badge show">Inheritance &amp; family</span>
+            <span class="faq__q-text">Do I really get exactly 50% of my DNA from each parent?</span>
+          </div>
+          <span class="faq__chevron">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            <div class="faq__body">
+              <p>Yes, but with an asterisk worth understanding. You inherit one copy of each of your 23 chromosomes from each biological parent. That gives you 50% of your nuclear DNA from your mother and 50% from your father. This part is true at the moment of conception and stays true for the rest of your life.</p>
+              <p>The asterisk: you also inherit mitochondrial DNA, a small, separate genome that lives inside the mitochondria (the energy producers in your cells). Mitochondrial DNA is passed down only through the maternal line. So if you count mitochondrial DNA in the total, you get marginally more DNA from your mother than from your father — but the difference is tiny, because mitochondrial DNA is only about 16,000 base pairs out of your roughly three billion.</p>
+              <p>The harder, more interesting question is which 50% you got from each parent. That part is random. Your siblings got a different random draw. This is why siblings share about 50% of their DNA with each other on average, but the exact figure varies.</p>
+            </div>
+            <div class="faq__meta">
+              <span>Reviewed by Dr. Riya M., clinical geneticist</span>
+              <span class="faq__meta-dot"></span>
+              <span>Inheritance &amp; Family</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="faq__item" data-cat="inheritance" data-tags="siblings different look meiosis recombination">
+        <button class="faq__q" onclick="toggleFaq(this)">
+          <div class="faq__q-left">
+            <span class="faq__cat-badge show">Inheritance &amp; family</span>
+            <span class="faq__q-text">Why do siblings look different even though they share the same parents?</span>
+          </div>
+          <span class="faq__chevron">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            <div class="faq__body">
+              <p>Because the inheritance process is genuinely random within each pregnancy. Each of your parents has two copies of every chromosome — one inherited from their mother, one from their father. When their bodies make eggs and sperm, the cells go through a process called meiosis, which shuffles those two copies and produces a sex cell with just one chromosome from each pair. Which copy ends up in any given egg or sperm is random, and there is also some physical swapping of DNA segments between paired chromosomes — a process called recombination.</p>
+              <p>The result: every egg and every sperm carries a slightly different combination of the parent's DNA. When egg meets sperm, you get a child who is 50% from each parent — but a different 50% than the next child will get. This is why two biological siblings share, on average, 50% of their DNA, but the actual figure ranges from roughly 38% to 61% in practice.</p>
+            </div>
+            <div class="faq__meta">
+              <span>Reviewed by Dr. Riya M., clinical geneticist</span>
+              <span class="faq__meta-dot"></span>
+              <span>Inheritance &amp; Family</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="faq__item" data-cat="inheritance" data-tags="inherit condition parents no family history recessive mutation">
+        <button class="faq__q" onclick="toggleFaq(this)">
+          <div class="faq__q-left">
+            <span class="faq__cat-badge show">Inheritance &amp; family</span>
+            <span class="faq__q-text">Can I inherit a condition that neither of my parents has?</span>
+          </div>
+          <span class="faq__chevron">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            <div class="faq__body">
+              <p>Yes, this happens in two main ways. First, <strong>recessive inheritance</strong>. Many genetic conditions only show up when a person inherits two copies of the variant — one from each parent. If both your parents are carriers of a single copy each, neither will have the condition themselves, but each pregnancy has a one-in-four chance of producing a child who inherits both copies. Cystic fibrosis, sickle cell disease, and several other conditions follow this pattern.</p>
+              <p>Second, <strong>new mutations</strong>. Roughly 60 to 70 new genetic mutations appear in every newborn that were not present in either parent — small copying errors made when sperm and egg cells were being produced. Most are harmless. A small fraction cause genetic conditions. Achondroplasia (the most common form of inherited dwarfism) is famously caused by a new mutation in about 80% of cases.</p>
+              <p>This is one of the reasons "no family history" doesn't always mean "no risk."</p>
+            </div>
+            <div class="faq__meta">
+              <span>Reviewed by Dr. Vikram K., medical geneticist</span>
+              <span class="faq__meta-dot"></span>
+              <span>Inheritance &amp; Family</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="faq__item" data-cat="ancestry" data-tags="twin sisters different ancestry results estimates">
+        <button class="faq__q" onclick="toggleFaq(this)">
+          <div class="faq__q-left">
+            <span class="faq__cat-badge show">Ancestry</span>
+            <span class="faq__q-text">Why do twin sisters sometimes get different ancestry results?</span>
+          </div>
+          <span class="faq__chevron">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            <div class="faq__body">
+              <p>If they are identical twins, they shouldn't. The fact that they sometimes do tells you something important about how ancestry tests actually work. Identical twins share essentially 100% of their DNA. Any difference in their ancestry results is not a difference in their biology — it is a difference in how the test was processed.</p>
+              <p>The reason this happens: ancestry estimates are statistical inferences, not direct readings. The test compares your SNP pattern to reference populations and runs probability calculations. Small random variation in how a sample is processed, batched, and statistically modelled can produce slightly different inferences from the same DNA — especially at the edges, where two ancestry regions overlap.</p>
+              <p>Two takeaways: the percentages are estimates with confidence intervals, not facts. And different companies use different reference panels, which is why the same person can look 30% Italian on one site and 18% Italian on another.</p>
+            </div>
+            <div class="faq__meta">
+              <span>Reviewed by Dr. Vikram K., medical geneticist</span>
+              <span class="faq__meta-dot"></span>
+              <span>Ancestry</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="faq__item" data-cat="ancestry" data-tags="ancestry results changed update reference panel">
+        <button class="faq__q" onclick="toggleFaq(this)">
+          <div class="faq__q-left">
+            <span class="faq__cat-badge show">Ancestry</span>
+            <span class="faq__q-text">How can my ancestry report change when I haven't done anything?</span>
+          </div>
+          <span class="faq__chevron">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            <div class="faq__body">
+              <p>Your DNA hasn't changed. The reference panel has. Ancestry companies estimate your background by comparing your DNA pattern to large databases of people with known origins. As more people from underrepresented regions add their data, the reference populations get larger and more granular, and the company's algorithms get retrained.</p>
+              <p>For South Asian users, this matters more than for European users. The reference databases were historically dominated by people of European descent. Indian, Pakistani, Bangladeshi, Sri Lankan, and Nepali samples were underrepresented until quite recently. As that gap closes, South Asian results are getting noticeably more specific — a result that just said "South Asian" in 2019 might now say "Punjabi" or "Bengali" or "Sinhalese."</p>
+              <p>If your results changed and you want to understand why, almost every major ancestry company publishes change-log notes when they update their reference panel. Worth looking up.</p>
+            </div>
+            <div class="faq__meta">
+              <span>Reviewed by Dr. Manas K., molecular biologist</span>
+              <span class="faq__meta-dot"></span>
+              <span>Ancestry</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="faq__item" data-cat="ancestry" data-tags="ancestry prove relatives DNA matching cousins">
+        <button class="faq__q" onclick="toggleFaq(this)">
+          <div class="faq__q-left">
+            <span class="faq__cat-badge show">Ancestry</span>
+            <span class="faq__q-text">Can an ancestry test prove who my biological relatives are?</span>
+          </div>
+          <span class="faq__chevron">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            <div class="faq__body">
+              <p>For close relatives, yes, with high confidence. For distant ones, less so. When you upload your DNA to an ancestry service that offers relative matching, the algorithm searches its database for other users who share long, continuous stretches of identical DNA with you.</p>
+              <p>For first-degree relatives — parent, child, full sibling — DNA matching is essentially conclusive. For second-degree relatives (half-siblings, grandparents, aunts and uncles) and third-degree relatives (first cousins), the match is still strong, though identifying which specific relationship can sometimes require additional information.</p>
+              <p>Beyond that — third cousins, fourth cousins, anyone sharing less than about 1% DNA — the prediction is statistical. These tests have changed adoption searches, donor-conceived families, and law enforcement (the Golden State Killer case). They have also produced thousands of surprise discoveries — unexpected half-siblings, undisclosed parentage, family secrets surfaced. Worth being prepared for what you might find.</p>
+            </div>
+            <div class="faq__meta">
+              <span>Reviewed by Dr. Riya M., clinical geneticist</span>
+              <span class="faq__meta-dot"></span>
+              <span>Ancestry</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="faq__item" data-cat="health" data-tags="higher risk disease destiny polygenic score">
+        <button class="faq__q" onclick="toggleFaq(this)">
+          <div class="faq__q-left">
+            <span class="faq__cat-badge show">Health &amp; disease risk</span>
+            <span class="faq__q-text">If a test says I have a 'higher risk' for a disease, does that mean I'll get it?</span>
+          </div>
+          <span class="faq__chevron">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            <div class="faq__body">
+              <p>No. Higher risk is not destiny — but the test result is also not nothing. Most direct-to-consumer health reports use a polygenic risk score, which adds up the small effects of many genetic variants to estimate your risk relative to an average person.</p>
+              <p>What changes the number significantly is what you do with it. Type 2 diabetes risk responds strongly to weight, diet, sleep, and exercise. Cardiovascular risk responds to lipid management, blood pressure control, and lifestyle. A person with a "high genetic risk" who manages those factors can have a lower real-world risk than a person with "average genetic risk" who ignores them.</p>
+              <p>The honest framing: a higher genetic risk score is a reason to pay more attention, not a sentence.</p>
+            </div>
+            <div class="faq__meta">
+              <span>Reviewed by Dr. Aruna G., preventive medicine</span>
+              <span class="faq__meta-dot"></span>
+              <span>Health &amp; Disease Risk</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="faq__item" data-cat="health" data-tags="carrier genetic condition recessive cystic fibrosis">
+        <button class="faq__q" onclick="toggleFaq(this)">
+          <div class="faq__q-left">
+            <span class="faq__cat-badge show">Health &amp; disease risk</span>
+            <span class="faq__q-text">What does it mean to be a 'carrier' of a genetic condition?</span>
+          </div>
+          <span class="faq__chevron">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            <div class="faq__body">
+              <p>It means you have one copy of a genetic variant that, if you had two copies, would cause a condition — but because you only have one, you are usually healthy. Most carrier conditions are recessive, meaning they only manifest when both copies of a gene are affected.</p>
+              <p>Where carrier status matters is when carriers have children together. If both parents are carriers of the same recessive condition, each pregnancy has a one-in-four chance of producing a child with two affected copies and the condition itself.</p>
+              <p>Some specific carrier rates are well-documented — about 1 in 25 people of European descent carry a cystic fibrosis variant, about 1 in 12 South Asians carry a beta-thalassemia variant. Knowing your carrier status doesn't change your health. It changes your reproductive planning.</p>
+            </div>
+            <div class="faq__meta">
+              <span>Reviewed by Dr. Riya M., clinical geneticist</span>
+              <span class="faq__meta-dot"></span>
+              <span>Health &amp; Disease Risk</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="faq__item" data-cat="health" data-tags="DNA test cancer diagnose BRCA oncologist">
+        <button class="faq__q" onclick="toggleFaq(this)">
+          <div class="faq__q-left">
+            <span class="faq__cat-badge show">Health &amp; disease risk</span>
+            <span class="faq__q-text">Can a DNA test diagnose cancer?</span>
+          </div>
+          <span class="faq__chevron">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            <div class="faq__body">
+              <p>Not on its own, no. But it can identify risk factors that significantly change how cancer is screened for and prevented. A clinical genetic test can identify inherited variants in genes like BRCA1, BRCA2, TP53, MLH1, MSH2, and others that substantially raise the lifetime risk of certain cancers.</p>
+              <p>Direct-to-consumer tests sometimes screen for a small number of BRCA variants (the three most common in Ashkenazi Jewish populations, for example). They do not cover the full gene. A negative DTC result does not rule out BRCA-related cancer risk — it only rules out the few variants the test happened to read.</p>
+              <p>For anyone with a strong family history of cancer, the right path is a clinical genetic test ordered through an oncologist or genetic counsellor, not a consumer kit.</p>
+            </div>
+            <div class="faq__meta">
+              <span>Reviewed by Dr. Vikram K., medical geneticist</span>
+              <span class="faq__meta-dot"></span>
+              <span>Health &amp; Disease Risk</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="faq__item" data-cat="traits" data-tags="morning person night owl chronotype genetic sleep">
+        <button class="faq__q" onclick="toggleFaq(this)">
+          <div class="faq__q-left">
+            <span class="faq__cat-badge show">Traits &amp; lifestyle</span>
+            <span class="faq__q-text">Is being a 'morning person' or 'night person' really genetic?</span>
+          </div>
+          <span class="faq__chevron">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            <div class="faq__body">
+              <p>Yes, substantially. Roughly 40 to 50% of the variation in human chronotype — whether you naturally peak in the morning or the evening — is explained by genetics. A 2019 study in Nature Communications, drawing on data from nearly 700,000 participants, identified more than 350 genetic regions associated with morningness.</p>
+              <p>What this means in practice: if you are a natural night owl, fighting your chronotype with willpower will work only partially. A genuinely late chronotype trying to wake at 5am is fighting their own endocrine system.</p>
+              <p>What can still be changed: roughly half of chronotype variation is environmental — light exposure, screen use, meal timing, exercise schedule, and consistent sleep windows can shift your rhythm by an hour or so in either direction. But the underlying preference is largely set. If you have always struggled to function early, it may not be a discipline problem.</p>
+            </div>
+            <div class="faq__meta">
+              <span>Reviewed by Dr. Sneha K., sleep researcher</span>
+              <span class="faq__meta-dot"></span>
+              <span>Traits &amp; Lifestyle</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q15 -->
+      <div class="faq__item" data-cat="traits" data-tags="caffeine affect CYP1A2 ADORA2A fast slow metaboliser">
+        <button class="faq__q" onclick="toggleFaq(this)">
+          <div class="faq__q-left">
+            <span class="faq__cat-badge show">Traits &amp; lifestyle</span>
+            <span class="faq__q-text">Why does caffeine affect some people way more than others?</span>
+          </div>
+          <span class="faq__chevron">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            <div class="faq__body">
+              <p>Two genes do most of the explaining: CYP1A2 and ADORA2A. CYP1A2 codes for the enzyme that breaks caffeine down in your liver. A specific variant determines whether you are a fast or slow metaboliser. Roughly half the global population carries at least one copy of the slow variant. In a slow metaboliser, caffeine's half-life in the bloodstream is about 8 to 10 hours, instead of 4 to 5 in a fast metaboliser. The same cup of coffee at 4pm clears by midnight for one person and is still active at 2am for the other.</p>
+              <p>ADORA2A codes for the adenosine receptor that caffeine blocks. Variants here change how sensitive you are to caffeine's stimulant effect. Two people can metabolise caffeine at the same speed but feel it very differently.</p>
+              <p>If a small dose of caffeine has always felt like too much, or coffee after lunch wrecks your sleep, you are probably carrying one or both of these variants. They are easy to test for.</p>
+            </div>
+            <div class="faq__meta">
+              <span>Reviewed by Dr. Manas K., molecular biologist</span>
+              <span class="faq__meta-dot"></span>
+              <span>Traits &amp; Lifestyle</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q16 -->
+      <div class="faq__item" data-cat="traits" data-tags="height 80% genetic heritability polygenic">
+        <button class="faq__q" onclick="toggleFaq(this)">
+          <div class="faq__q-left">
+            <span class="faq__cat-badge show">Traits &amp; lifestyle</span>
+            <span class="faq__q-text">Is height really 80% genetic?</span>
+          </div>
+          <span class="faq__chevron">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            <div class="faq__body">
+              <p>Roughly, yes — though "80% genetic" doesn't mean what most people think it means. Heritability estimates for adult height in well-fed populations cluster between 70% and 90%. This means that within a population where everyone has adequate nutrition, about 80% of the variation between people's heights is explained by genetic variation. It does not mean 80% of any individual's height is set by genes.</p>
+              <p>The mechanism is highly polygenic. There is no "height gene." A 2022 study in Nature identified more than 12,000 genetic variants that contribute to height, each with a tiny individual effect.</p>
+              <p>The remaining 20% of variation is environmental, and it can be substantial — childhood nutrition, illness load, hormone levels during puberty, and prenatal conditions all affect how much of a person's genetic potential they reach. For an individual: your DNA sets a likely range. Your environment determines where in that range you actually land.</p>
+            </div>
+            <div class="faq__meta">
+              <span>Reviewed by Dr. Vikram K., medical geneticist</span>
+              <span class="faq__meta-dot"></span>
+              <span>Traits &amp; Lifestyle</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q17 -->
+      <div class="faq__item" data-cat="traits" data-tags="diet DNA best nutrigenomics LCT APOE">
+        <button class="faq__q" onclick="toggleFaq(this)">
+          <div class="faq__q-left">
+            <span class="faq__cat-badge show">Traits &amp; lifestyle</span>
+            <span class="faq__q-text">Can a DNA test tell me what diet is best for me?</span>
+          </div>
+          <span class="faq__chevron">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            <div class="faq__body">
+              <p>Partially. The science is real but still limited, and the marketing often outruns the evidence. There are genuine, well-replicated diet-relevant genetic variants: the LCT gene determines whether you can digest lactose into adulthood. APOE variants change how your body responds to dietary saturated fat. FTO variants are associated with weight gain in response to high-carbohydrate diets.</p>
+              <p>What current tests cannot do reliably: tell you exactly which calorie target, macro split, or meal timing is "optimal" for you. The science of nutrigenomics is still developing, and the gap between identifying a variant and prescribing a precise plan is large.</p>
+              <p>Treat the DNA report as a starting layer of information about your biology. Combine it with how you actually feel and respond to food. The combination is more useful than either alone.</p>
+            </div>
+            <div class="faq__meta">
+              <span>Reviewed by Dr. Aruna G., preventive medicine</span>
+              <span class="faq__meta-dot"></span>
+              <span>Traits &amp; Lifestyle</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q18 -->
+      <div class="faq__item" data-cat="pregnancy" data-tags="carrier screening before baby thalassemia cystic fibrosis">
+        <button class="faq__q" onclick="toggleFaq(this)">
+          <div class="faq__q-left">
+            <span class="faq__cat-badge show">Children &amp; pregnancy</span>
+            <span class="faq__q-text">Should I get genetic carrier screening before trying to have a baby?</span>
+          </div>
+          <span class="faq__chevron">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            <div class="faq__body">
+              <p>It depends on your family history, your ethnic background, and your appetite for information. For most couples, the answer is "it can be useful, and it is increasingly affordable."</p>
+              <p>Carrier screening looks for variants you and your partner each carry that would only become a health concern if a child inherited both copies. In India, carrier rates for beta-thalassemia are particularly high — roughly 1 in 12 people carry a variant. If both partners are carriers, each pregnancy has a 25% risk of producing a child with the condition. Thalassemia screening is recommended in many Indian medical guidelines before marriage or pregnancy.</p>
+              <p>The honest counterargument: most carrier screenings return reassuring results, but they can also return unexpected findings that complicate decision-making. Going in with realistic expectations — and with access to a genetic counsellor before and after — is the responsible way to do this.</p>
+            </div>
+            <div class="faq__meta">
+              <span>Reviewed by Dr. Riya M., clinical geneticist</span>
+              <span class="faq__meta-dot"></span>
+              <span>Children &amp; Pregnancy</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q19 -->
+      <div class="faq__item" data-cat="pregnancy" data-tags="NIPT non-invasive prenatal accurate Down syndrome screening">
+        <button class="faq__q" onclick="toggleFaq(this)">
+          <div class="faq__q-left">
+            <span class="faq__cat-badge show">Children &amp; pregnancy</span>
+            <span class="faq__q-text">How accurate is non-invasive prenatal testing (NIPT)?</span>
+          </div>
+          <span class="faq__chevron">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            <div class="faq__body">
+              <p>Very accurate for the conditions it is designed to screen, but it is a screening test, not a diagnostic one. The distinction matters. NIPT analyses small fragments of fetal DNA that circulate in the mother's bloodstream during pregnancy. From about 10 weeks of gestation onwards, it can estimate the risk of the most common chromosomal abnormalities with detection rates above 99% and false positive rates below 0.5%.</p>
+              <p>What this means: a "high-risk" NIPT result is much more likely to be a true positive than older blood tests would have produced, but it is still not certain. Confirmation requires an invasive diagnostic test (amniocentesis or chorionic villus sampling), which carries a small miscarriage risk but provides a definitive answer.</p>
+              <p>The most important thing to know: NIPT results are conversations with a clinician, not headlines.</p>
+            </div>
+            <div class="faq__meta">
+              <span>Reviewed by Dr. Riya M., clinical geneticist</span>
+              <span class="faq__meta-dot"></span>
+              <span>Children &amp; Pregnancy</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q20 -->
+      <div class="faq__item" data-cat="ethics" data-tags="who owns DNA data privacy consent law enforcement">
+        <button class="faq__q" onclick="toggleFaq(this)">
+          <div class="faq__q-left">
+            <span class="faq__cat-badge show">Ethics, privacy &amp; law</span>
+            <span class="faq__q-text">Who owns my DNA data after I take a test?</span>
+          </div>
+          <span class="faq__chevron">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            <div class="faq__body">
+              <p>Legally, in most jurisdictions, you do. Practically, that depends on what you signed. When you order a DNA test, you typically sign two consent documents: one for the test itself, and one for what the company can do with your data afterwards. The second one matters more than most people realise.</p>
+              <p>The differences between companies are real. Some allow you to opt in or out of research use. Some let you delete your data and ask for the physical sample to be destroyed. Some have shared data with law enforcement under court order (GEDmatch and its role in the Golden State Killer investigation is the famous example). Some have suffered data breaches.</p>
+              <p>A few practical steps: read the privacy policy before ordering. Choose the most restrictive sharing setting available. If you want maximum control, choose a company that lets you download your raw data and delete the account.</p>
+            </div>
+            <div class="faq__meta">
+              <span>Reviewed by Dr. Aruna G., preventive medicine</span>
+              <span class="faq__meta-dot"></span>
+              <span>Ethics, Privacy &amp; Law</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q21 -->
+      <div class="faq__item" data-cat="ethics" data-tags="genetic results insurance job discrimination GINA law">
+        <button class="faq__q" onclick="toggleFaq(this)">
+          <div class="faq__q-left">
+            <span class="faq__cat-badge show">Ethics, privacy &amp; law</span>
+            <span class="faq__q-text">Can my genetic test results affect my insurance or job?</span>
+          </div>
+          <span class="faq__chevron">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            <div class="faq__body">
+              <p>It depends entirely on where you live. In the <strong>United States</strong>, GINA (2008) prohibits health insurers and employers from using genetic information to discriminate. The protection does not extend to life insurance, long-term care insurance, or disability insurance.</p>
+              <p>In the <strong>United Kingdom</strong>, an industry agreement restricts insurers from requiring predictive genetic test results, with one exception for very large life insurance policies and Huntington's disease.</p>
+              <p>In the <strong>European Union</strong>, the GDPR classes genetic data as "special category" personal data, requiring explicit consent for processing. In <strong>India</strong>, there is currently no comprehensive law equivalent to GINA. The Digital Personal Data Protection Act of 2023 provides some protections, but the application to insurance and employment is still being clarified.</p>
+              <p>The practical advice: check your specific country's law and your specific insurance contract before ordering if you have concerns.</p>
+            </div>
+            <div class="faq__meta">
+              <span>Reviewed by Dr. Aruna G., preventive medicine</span>
+              <span class="faq__meta-dot"></span>
+              <span>Ethics, Privacy &amp; Law</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q22 -->
+      <div class="faq__item" data-cat="ethics" data-tags="tell family genetic result BRCA share relatives">
+        <button class="faq__q" onclick="toggleFaq(this)">
+          <div class="faq__q-left">
+            <span class="faq__cat-badge show">Ethics, privacy &amp; law</span>
+            <span class="faq__q-text">Should I tell my family about a genetic test result?</span>
+          </div>
+          <span class="faq__chevron">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq__a">
+          <div class="faq__a-inner">
+            <div class="faq__body">
+              <p>This is one of the harder questions in clinical genetics. Most counsellors would say yes, but the situation is rarely simple. Many serious genetic findings have implications for biological relatives. If you carry a BRCA1 variant, your siblings each have a 50% chance of carrying it too, and your children each have a 50% chance. Telling family members lets them choose whether to test themselves and, if positive, to access preventive screening or treatment.</p>
+              <p>The complications: genetic information often surfaces things people did not want to know. Surprise paternity results — sometimes uncovered by ancestry tests — affect not just the test-taker but everyone connected to them.</p>
+              <p>Most genetic counsellors recommend a phased approach: process your own result first. Identify which relatives are at meaningful risk. Reach out privately, in a setting that gives them space to respond. Offer the information without pressuring them to act on it. The decision to share is yours. The information, in a real sense, is also theirs.</p>
+            </div>
+            <div class="faq__meta">
+              <span>Reviewed by Dr. Riya M., clinical geneticist</span>
+              <span class="faq__meta-dot"></span>
+              <span>Ethics, Privacy &amp; Law</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /faq__list -->
+  </div>
+</section>
+
+<!-- ============================================================
+     EDITORIAL STANDARDS
+     ============================================================ -->
+<section class="standards" id="standards">
+  <div class="wrap">
+    <div class="standards__inner">
+      <div>
+        <p class="standards__label">How we write these answers</p>
+        <h2 class="standards__h2">Plain science,<br><em class="standards__h2_br">honestly held.</em></h2>
+        <p class="standards__body">Every answer on this site is researched against peer-reviewed sources, drafted by our editorial team, and reviewed by a board-certified clinician or genetic counsellor before publishing. We cite sources in the answer itself, not in hidden footnotes. We update answers when the science updates — the date of last review appears under each question. We say 'we don't know yet' when that is the honest answer.</p>
+      </div>
+      <div class="standards__pillars">
+        <div class="pillar">
+          <span class="pillar__num">01</span>
+          <div class="pillar__content">
+            <div class="pillar__title">Peer-reviewed sources only</div>
+            <div class="pillar__text">Every factual claim is traced to a published study or authoritative clinical guideline. Speculation is labelled as such.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <span class="pillar__num">02</span>
+          <div class="pillar__content">
+            <div class="pillar__title">Clinician review before publish</div>
+            <div class="pillar__text">No answer goes live without sign-off from a board-certified clinician or genetic counsellor with relevant specialty.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <span class="pillar__num">03</span>
+          <div class="pillar__content">
+            <div class="pillar__title">Updated as science updates</div>
+            <div class="pillar__text">The last-reviewed date under each Q&amp;A is real. When evidence changes, the answer changes. We don't leave stale copy up.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <span class="pillar__num">04</span>
+          <div class="pillar__content">
+            <div class="pillar__title">We say 'we don't know yet'</div>
+            <div class="pillar__text">Genetics is fast-moving. Some questions don't have settled answers yet. We say so plainly, rather than manufacturing false certainty.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     NEWSLETTER
+     ============================================================ -->
+<section class="newsletter" id="newsletter">
+  <div class="wrap">
+    <div class="newsletter__box anim">
+      <div class="newsletter__icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M3 8l8.5 6 8.5-6M3 8v10a1 1 0 001 1h16a1 1 0 001-1V8M3 8a1 1 0 011-1h16a1 1 0 011 1" stroke="var(--gold-light)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2 class="newsletter__h2">One answered question,<br><em class="newsletter__h2_br">every Friday.</em></h2>
+      <p class="newsletter__sub">Five-minute reads on the genetics questions readers asked us this week. Plus a short note on any new science that changes an old answer. In your inbox.</p>
+      <div class="newsletter__form">
+        <input type="email" class="newsletter__input" placeholder="your@email.com" />
+        <a href="#" class="btn btn--navy">Subscribe</a>
+      </div>
+      <p class="newsletter__note">No spam. No affiliate links. Unsubscribe any time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__inner">
+      <div class="footer__brand">Map<span>My</span>Genetic<span>.com</span></div>
+      <div class="footer__links">
+        <a href="#" class="footer__link">About</a>
+        <a href="#" class="footer__link">Editorial standards</a>
+        <a href="#" class="footer__link">Privacy</a>
+        <a href="#" class="footer__link">Ask a question</a>
+      </div>
+      <div class="footer__copy">Plain-language genetics · Free for everyone</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===== Nav scroll ===== */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+/* ===== Intersection observer for animations ===== */
+const animEls = document.querySelectorAll('.anim');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+animEls.forEach(el => observer.observe(el));
+
+/* ===== FAQ accordion ===== */
+function toggleFaq(btn) {
+  const item = btn.closest('.faq__item');
+  const isOpen = item.classList.contains('open');
+
+  // Close all
+  document.querySelectorAll('.faq__item.open').forEach(el => el.classList.remove('open'));
+
+  // Toggle clicked
+  if (!isOpen) item.classList.add('open');
+}
+
+/* ===== Category filter ===== */
+let activeCategory = 'all';
+
+function filterCategory(card, cat) {
+  // UI
+  document.querySelectorAll('.cat-card').forEach(c => c.classList.remove('active'));
+  card.classList.add('active');
+
+  activeCategory = cat;
+  updateFaqList();
+}
+
+/* ===== Search filter ===== */
+let searchVal = '';
+document.querySelector('.hero__search-input').addEventListener('input', function() {
+  searchVal = this.value.toLowerCase();
+  updateFaqList();
+});
+
+function filterByTag(tag) {
+  const input = document.querySelector('.hero__search-input');
+  input.value = tag;
+  searchVal = tag.toLowerCase();
+  updateFaqList();
+  document.getElementById('faq').scrollIntoView({ behavior: 'smooth' });
+}
+
+function updateFaqList() {
+  const items = document.querySelectorAll('.faq__item');
+  let visible = 0;
+
+  items.forEach(item => {
+    const cat = item.dataset.cat;
+    const tags = (item.dataset.tags || '').toLowerCase();
+    const qText = item.querySelector('.faq__q-text').textContent.toLowerCase();
+    const bodyText = item.querySelector('.faq__body') ? item.querySelector('.faq__body').textContent.toLowerCase() : '';
+
+    const catMatch = activeCategory === 'all' || cat === activeCategory;
+    const searchMatch = !searchVal || qText.includes(searchVal) || tags.includes(searchVal) || bodyText.includes(searchVal);
+
+    if (catMatch && searchMatch) {
+      item.style.display = '';
+      visible++;
+
+      // Show/hide badge depending on context
+      const badge = item.querySelector('.faq__cat-badge');
+      badge.classList.toggle('show', activeCategory === 'all');
+    } else {
+      item.style.display = 'none';
+    }
+  });
+
+  // Update count
+  const countEl = document.getElementById('faq-count');
+  if (activeCategory === 'all' && !searchVal) {
+    countEl.textContent = 'Showing all 22';
+  } else {
+    countEl.textContent = `Showing ${visible} of 22`;
+  }
+}
+</script>
+
+</body>
+</html>
