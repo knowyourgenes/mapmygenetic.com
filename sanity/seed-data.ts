@@ -248,7 +248,7 @@ export const questions: SeedQuestion[] = [
         "The reason SNPs come up so often in genetics is that they are easy to read at scale and many of them have been studied for their associations with health, traits, and ancestry. A typical direct-to-consumer DNA test reads between 600,000 and a million SNPs.",
       ],
       [
-        "Not every SNP matters. Most are silent variation. The famous ones - APOE for Alzheimer's, BRCA1/2 for breast cancer, CYP1A2 for caffeine, LCT for lactose — matter because the science has caught up to them.",
+        "Not every SNP matters. Most are silent variation. The famous ones - APOE for Alzheimer's, BRCA1/2 for breast cancer, CYP1A2 for caffeine, LCT for lactose - matter because the science has caught up to them.",
       ],
     ],
   },
@@ -284,7 +284,7 @@ export const questions: SeedQuestion[] = [
         "Because the inheritance process is genuinely random within each pregnancy. Each of your parents has two copies of every chromosome - one inherited from their mother, one from their father. When their bodies make eggs and sperm, the cells go through a process called meiosis, which shuffles those two copies and produces a sex cell with just one chromosome from each pair. Which copy ends up in any given egg or sperm is random, and there is also some physical swapping of DNA segments between paired chromosomes - a process called recombination.",
       ],
       [
-        "The result: every egg and every sperm carries a slightly different combination of the parent's DNA. When egg meets sperm, you get a child who is 50% from each parent — but a different 50% than the next child will get. This is why two biological siblings share, on average, 50% of their DNA, but the actual figure ranges from roughly 38% to 61% in practice.",
+        "The result: every egg and every sperm carries a slightly different combination of the parent's DNA. When egg meets sperm, you get a child who is 50% from each parent - but a different 50% than the next child will get. This is why two biological siblings share, on average, 50% of their DNA, but the actual figure ranges from roughly 38% to 61% in practice.",
       ],
     ],
   },
@@ -351,7 +351,7 @@ export const questions: SeedQuestion[] = [
         "Your DNA hasn't changed. The reference panel has. Ancestry companies estimate your background by comparing your DNA pattern to large databases of people with known origins. As more people from underrepresented regions add their data, the reference populations get larger and more granular, and the company's algorithms get retrained.",
       ],
       [
-        'For South Asian users, this matters more than for European users. The reference databases were historically dominated by people of European descent. Indian, Pakistani, Bangladeshi, Sri Lankan, and Nepali samples were underrepresented until quite recently. As that gap closes, South Asian results are getting noticeably more specific — a result that just said "South Asian" in 2019 might now say "Punjabi" or "Bengali" or "Sinhalese."',
+        'For South Asian users, this matters more than for European users. The reference databases were historically dominated by people of European descent. Indian, Pakistani, Bangladeshi, Sri Lankan, and Nepali samples were underrepresented until quite recently. As that gap closes, South Asian results are getting noticeably more specific - a result that just said "South Asian" in 2019 might now say "Punjabi" or "Bengali" or "Sinhalese."',
       ],
       [
         "If your results changed and you want to understand why, almost every major ancestry company publishes change-log notes when they update their reference panel. Worth looking up.",
@@ -370,7 +370,7 @@ export const questions: SeedQuestion[] = [
         "For close relatives, yes, with high confidence. For distant ones, less so. When you upload your DNA to an ancestry service that offers relative matching, the algorithm searches its database for other users who share long, continuous stretches of identical DNA with you.",
       ],
       [
-        "For first-degree relatives - parent, child, full sibling — DNA matching is essentially conclusive. For second-degree relatives (half-siblings, grandparents, aunts and uncles) and third-degree relatives (first cousins), the match is still strong, though identifying which specific relationship can sometimes require additional information.",
+        "For first-degree relatives - parent, child, full sibling - DNA matching is essentially conclusive. For second-degree relatives (half-siblings, grandparents, aunts and uncles) and third-degree relatives (first cousins), the match is still strong, though identifying which specific relationship can sometimes require additional information.",
       ],
       [
         "Beyond that - third cousins, fourth cousins, anyone sharing less than about 1% DNA - the prediction is statistical. These tests have changed adoption searches, donor-conceived families, and law enforcement (the Golden State Killer case). They have also produced thousands of surprise discoveries - unexpected half-siblings, undisclosed parentage, family secrets surfaced. Worth being prepared for what you might find.",
@@ -671,6 +671,91 @@ export const questions: SeedQuestion[] = [
       ],
       [
         "Most genetic counsellors recommend a phased approach: process your own result first. Identify which relatives are at meaningful risk. Reach out privately, in a setting that gives them space to respond. Offer the information without pressuring them to act on it. The decision to share is yours. The information, in a real sense, is also theirs.",
+      ],
+    ],
+  },
+  {
+    slug: "why-do-some-families-pass-on-twins",
+    question: "Why do some families pass on twins?",
+    categorySlug: "dna",
+    reviewerSlug: "riya-m",
+    tags: [
+      "twins",
+      "families",
+      "fraternal",
+      "identical",
+      "hyperovulation",
+      "inherited",
+      "genetic",
+    ],
+    order: 0,
+    answer: [
+      [
+        "Twins run in some families because one type of twinning is partly genetic, while the other type appears to be mostly chance. The honest answer depends entirely on which kind of twins you mean, and the two are biologically very different, which is the root of most of the confusion around this question.",
+      ],
+      [
+        { b: "The two kinds of twins are not the same thing" },
+        " Fraternal, or non-identical, twins happen when a woman releases two eggs in a single cycle and both are fertilised by different sperm. The resulting babies are no more genetically alike than any two siblings born years apart. They can be different sexes, and they simply shared a womb at the same time. This is the kind of twinning that can genuinely 'run in families.'",
+      ],
+      [
+        "Identical twins happen when a single fertilised egg splits into two embryos early in development. The resulting children share essentially the same DNA. As far as large studies can tell, this split is a random event that is not reliably tied to family history.",
+      ],
+      [
+        "So when relatives say 'twins run in our family,' they are almost always describing fraternal twins, even if nobody in the conversation realises the distinction is the whole point. Keeping these two apart is the first step to a clear answer.",
+      ],
+      [
+        { b: "Why fraternal twinning is inherited, and through whom" },
+        " Fraternal twinning depends on a tendency to release more than one egg at ovulation, a trait called hyperovulation. Variants in genes involved in the hormone signalling behind ovulation, including genes linked to follicle-stimulating hormone, are associated with a higher chance of releasing two eggs in one cycle. A woman who inherits this tendency is more likely to conceive fraternal twins than a woman who does not.",
+      ],
+      [
+        "Here is the part people get wrong, and it explains a lot of confusing family trees. This trait is only expressed in the body that actually ovulates. A man can carry a hyperovulation variant and pass it to his daughter, and she may then have fraternal twins, but he cannot have twins himself because of it. There is nothing in his biology for the gene to act on. This is exactly why fraternal twins can appear to 'skip' the male line and resurface a generation later. The gene travelled through the father silently, invisible in him, and then switched on in his daughter. Families often read this as twins skipping a generation, when really the instruction was being carried quietly the whole time.",
+      ],
+      [
+        { b: "The factors that are not genetic at all" },
+        " Several things raise the odds of fraternal twins entirely independently of family history, and they matter just as much as genetics in practice:",
+      ],
+      [
+        { b: "Maternal age." },
+        " Older mothers tend to have higher levels of the hormones that can trigger the release of more than one egg, raising the odds of fraternal twins.",
+      ],
+      [
+        { b: "Fertility treatments." },
+        " Ovulation-stimulating drugs and IVF substantially increase twin rates, which is a major reason twin births have risen in many countries over recent decades.",
+      ],
+      [
+        { b: "Population background." },
+        " Twinning rates differ measurably across populations and regions, for reasons that appear to be partly genetic and partly environmental.",
+      ],
+      [
+        { b: "Previous pregnancies and body size." },
+        " Both have been associated with modest shifts in fraternal twinning odds.",
+      ],
+      [
+        "Because of these factors, a woman with no family history of twins can still conceive them, and a woman with a strong family history may never do so. Genetics tilts the odds, it does not set them.",
+      ],
+      [
+        { b: "The bottom line for a hopeful or anxious parent-to-be" },
+        " If fraternal twins appear on the mother's side of the family, there may be a modestly raised chance of fraternal twins, and that chance climbs with older maternal age and with fertility treatment. A family history on the father's side can still be passed to a daughter, but it will not affect his own children's twinning odds directly. Identical twins, for now, look like a genuine roll of the dice that current evidence cannot reliably connect to your family tree. If you are specifically hoping for or worried about twins, the most honest summary is that you can estimate the odds shifting up or down, but nobody can promise you an outcome.",
+      ],
+      [{ b: "Quick FAQ" }],
+      [
+        { b: "Can twins skip a generation?" },
+        " The fraternal-twin tendency can pass silently through a son to his daughter, which is why it can appear to skip a generation in a family tree.",
+      ],
+      [
+        { b: "Do identical twins run in families?" },
+        " Current evidence suggests identical twinning is mostly random and does not reliably cluster in families, unlike fraternal twinning.",
+      ],
+      [
+        { b: "Does having one set of fraternal twins mean I'll have more?" },
+        " A history of fraternal twins does raise the odds somewhat, since the underlying hyperovulation tendency tends to persist across pregnancies.",
+      ],
+      [
+        { b: "Do fertility treatments cause twins?" },
+        " They meaningfully raise the chance of fraternal twins by stimulating the release of more than one egg, independent of any family history.",
+      ],
+      [
+        "We cite sources in the answer itself. We update when the science updates. We say 'we don't know yet' when that is the honest answer.",
       ],
     ],
   },
